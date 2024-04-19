@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        async function getFile() {
+            let myPromise = new Promise(function(resolve) {
+                let req = new XMLHttpRequest();
+                req.open('GET', "index.html");
+                req.onload = function() {
+                    if (req.status == 200) {
+                    resolve(req.response);
+                    } else {
+                    resolve("File not Found");
+                    }
+                };
+                req.send();
+            });
+            document.getElementById("demo").innerHTML = await myPromise;
+        }
+    
+        getFile();
+    </script>
+</body>
+</html>
